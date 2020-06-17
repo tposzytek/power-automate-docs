@@ -121,20 +121,21 @@ To run a WinAutomation process without the Console environment, you can use the 
 
 ### Launching WinAutomation processes from UI flows
 
-Once you have successfully identified the command to run WinAutomation processes above, you can now invoke this command directly from UI flows. To do this:
+To trigger WinAutomation from UI flows use a dedicated action that you can find in UI flows designer:
 
-1.  Add a new step in UI flow recording experience by clicking **Launch Recorder** if you have a blank UI flow. If you already have pre-defined steps in UI flow, you can click **New Step** and then **Record app** to launch the recorder. More information about the recording experience is available [here](https://docs.microsoft.com/power-automate/ui-flows/create-desktop).
+1.  Add a new step in UI flow recording experience by clicking **New step** if you have a blank UI flow. 
 
-1.  Select **Record** in the launched recorder.
+1.  Select **Run WinAutomation (preview)** action.
 
-1.  Open the **Command Prompt** app in Windows.
+1.  Type in the path to process you'd like to execute in WinAutomation.
 
-1.  Type in the WinAutomationController command you authored earlier (for example, WinAutomationController /start "/My Processes/../../process").
+1.  Additionally pass parameters, separated with spaces.
 
-1.  Select **Done** in the recorder.
+>[!NOTE]
+>If the values passed to WinAutomation may contain spaces, remember to enclose the inserted variables with quotes! Otherwise they will be treated as separate values. 
 
-You will notice that recorder adds new steps to your UI flow that now includes launching the WinAutomationController.
-
+>[!NOTE]
+>You must be running the latest versions of WinAutomation (9.2.1 or higher) and UI flows (1.1.76.20165 or higher) to use new action.
 
 >[!TIP]
 >UI flows can run in both attended and unattended automation modes. You can run WinAutomationController in both cases as well. If you’re executing UI flows on an unattended cluster, ensure that the WinAutomationController
@@ -142,13 +143,13 @@ command specified above will run on all machines in the cluster. For more inform
 
 ## Waiting for a WinAutomation process to complete in UI flows
 
-By default, WinAutomationController.exe runs processes in the background. If you’d like to have UI flows wait for WinAutomation process automation to complete, you can raise an informational message box at the end of the WinAutomation process using the **Display Message** command, and then wait in UI flows to click on that message box button. To do this:
+If you’d like to have UI flows wait for WinAutomation process automation to complete, you can define the amount of time to wait in action's configuration field: **"Wait after action"** eg. PT10S (wait 10 seconds). You can raise an informational message box at the end of the WinAutomation process using the **Display Message** command, and then wait in UI flows to click on that message box button. To do this:
 
 1.	Add a “Display Message” command as the last step in your WinAutomation Process. To do this, filter the Actions panel on the left to find Display Message and drag and drop that command to the Process script editor. You can give it some friendly title and description and leave the default button selection that shows the OK button.
 1.	Run the WinAutomation Process until the message box is shown. 
 1.	Add a new UI flow recording, click on the title of the Display Message box and then click OK. 
 1.	Stop recording by clicking Done. You will now see the script in UI flow has new set of actions for clicking on the dialog box and discarding the message box.
-1.	And finally, you will need to tell UI flow to give WinAutomation certain amount of time to complete. To do this, expand the previous Send Keys command that starts the WinAutomationController.exe command, expand to see the advanced options, and set the Wait After property to wait for the maximum amount of time the WinAutomation Process script will take to execute.
+1.	And finally, you will need to tell UI flow to give WinAutomation certain amount of time to complete. To do this, expand the previous **Run WinAutomation (preview)** action, expand to see the advanced options, and set the "Wait after action property" to wait for the maximum amount of time the WinAutomation Process script will take to execute.
 
 
 ## Uninstall WinAutomation
