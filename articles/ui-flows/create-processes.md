@@ -104,7 +104,7 @@ You can now create your own WinAutomation Processes and test them locally.
 
       ![Select run WinAutomation](../media/create-processes/067208afe7d9326a0b3b95d3581ffe6d.png)
 
-1.  In the **Run WinAutomation (preview)** card, fill in the Process Path and any optional command line arguments for the WinAutomation Process that you want to run.
+1.  In the **Run WinAutomation (preview)** card, fill in the Process Path and any optional command line arguments for the WinAutomation Process that you want to run. Surround arguments with quotes if you expect they will contain spaces. Otherwise WinAutomation will treat each word as a separate argument.
 
       ![WinAutomation card](../media/create-processes/cc73d6d455358810b1866df97e9a95e4.png)
 
